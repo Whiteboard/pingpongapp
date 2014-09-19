@@ -77,11 +77,9 @@
                     <% end %>          
                   </td>
                   <td><%= match.p2score %></td>
-                  <% if current_user.id == @league.admin_id %>
-                    <td><%= link_to 'Show', league_match_path(match.league_id, match.id) %></td>
-                    <td><%= link_to 'Edit', edit_league_match_path(match.league_id, match.id) %></td>
-                    <td><%= link_to 'Destroy', league_match_path(match.league_id, match.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
+                  <!-- <td><%= link_to 'Show', league_match_path(match.league_id, match.id) %></td>
+                  <td><%= link_to 'Edit', edit_league_match_path(match.league_id, match.id) %></td>
+                  <td><%= link_to 'Destroy', league_match_path(match.league_id, match.id), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
                 </tr>
               <% end %>
             </tbody>
