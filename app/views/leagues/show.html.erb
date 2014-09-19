@@ -7,16 +7,46 @@
     <% end %>
   </div>
 
-  <div class="container">
+<div class="league-info">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-6">
         <h1 class="league-name">
           <%= @league.league_name %>
         </h1>
       </div>
+      <div class='col-sm-6'>
+        <table>
+          <tr>
+            <th>Player</th>
+            <th>Wins</th>
+            <th>Losses</th>
+          </tr>
+         <% @leaguemembers.each do |user| %>
+          <tr>
+            <td>
+              <%= user.name %> 
+              <% totalwins = Match.where(match_winner: user.id).count %>
+              <% totallosses = Match.where.not(match_winner: user.id).where('player_one = ? OR player_two = ?', user.id, user.id).count %>
+            </td>
+            <td>
+              <%= totalwins %>
+            </td>
+            <td>
+              <%= totallosses %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="league-games">
+  <div class="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-8 col-sm-offset-2">
         <h4>Most Recent Games</h4>
           <table>
             <thead>
@@ -53,31 +83,6 @@
                 </tr>
               <% end %>
             </tbody>
-          </table>
-        </div>
-        <div class='col-sm-4'>
-          <h4>League Standings</h4>
-          <table>
-            <tr>
-              <th>Player</th>
-              <th>Wins</th>
-              <th>Losses</th>
-            </tr>
-           <% @leaguemembers.each do |user| %>
-            <tr>
-              <td>
-                <%= user.name %> 
-                <% totalwins = Match.where(match_winner: user.id).count %>
-                <% totallosses = Match.where.not(match_winner: user.id).where('player_one = ? OR player_two = ?', user.id, user.id).count %>
-              </td>
-              <td>
-                <%= totalwins %>
-              </td>
-              <td>
-                <%= totallosses %>
-              </td>
-            </tr>
-            <% end %>
           </table>
         </div>
       </div>

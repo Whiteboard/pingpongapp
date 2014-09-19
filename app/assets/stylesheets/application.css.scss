@@ -142,3 +142,36 @@ table {
 		margin-bottom: 50px;
 	}
 }
+
+.league-info {
+	background: #f0f0f0;
+	margin-top: -50px;
+	padding-top: 15px;
+	padding-bottom: 25px;
+	margin-bottom: 50px;
+	h1 {
+		text-align: left;
+		margin-top: 20px;
+		text-transform: uppercase;
+	}
+	table {
+		border-collapse: collapse;
+		border-bottom: 1px solid black;
+		th {
+			&:nth-child(2) {
+				text-align: center;
+			}
+			&:nth-child(3) {
+				text-align: center;				
+			}
+		}
+		td {
+			&:nth-child(2) {
+				text-align: center;
+			}
+			&:nth-child(3) {
+				text-align: center;				
+			}
+		}
+	}
+}
