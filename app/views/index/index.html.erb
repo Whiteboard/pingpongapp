@@ -1,13 +1,23 @@
 <%= render "layouts/header" %>
 
-<div class="content">
+<div class="content home-page">
 	<div class="clearfix"></div>
 	<br />
-	
-	<div class="opponents home-leagues">
-		<% current_user.leagues.each do |l| %>
-			<%= link_to l.league_name, league_path(l.id) %>
-		<% end %>
-	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Your Leagues</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 opponents home-leagues">
+				<% if current_user.leagues.each do |l| %>
+					<%= link_to l.league_name, league_path(l.id) %>
+				<% end.empty? %>
+					<h4>You have no leagues. You can create a league or join an existing league by going to the menu.</h4>
+				<% end %>
+			</div>
+		</div>
 
 </div>
