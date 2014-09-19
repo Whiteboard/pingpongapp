@@ -1,0 +1,13 @@
+<%= render "layouts/header" %>
+
+<div class="content">
+	<div class="clearfix"></div>
+	<br />
+	
+	<div class="opponents home-leagues">
+		<% current_user.leagues.each do |l| %>
+			<%= link_to l.league_name, league_path(l.id) %>
+		<% end %>
+	</div>
+
+</div>

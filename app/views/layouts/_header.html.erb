@@ -1,0 +1,23 @@
+<header>
+	<div class="left">
+		&nbsp;
+	</div>
+	<div class="center">
+		<p class="person-name"><%= link_to current_user.first_name + " " + current_user.last_name, root_url %></p>
+	</div>
+	<div class="right">
+		<p class="menu-trigger"><i class="fa fa-bars fa-2x"></i></p>
+		<ul class="main-menu">
+			<li><div class="active-leage-selector">
+			<% current_user.leagues.each do |l| %>
+				<%= link_to l.league_name, league_path(l.id) %>
+			<% end %></div>
+			</li>
+			<li class="divider"></li>
+			<li><%= link_to 'Create League', new_league_path(@user) %></li>
+			<li><%= link_to 'Join League', join_leagues_path %></li>
+			<li><%= link_to 'Profile', edit_user_registration_path(@user) %></li>
+			<li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+		</ul>
+	</div>
+</header>

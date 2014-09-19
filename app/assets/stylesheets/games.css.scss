@@ -1,0 +1,44 @@
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-game {
+	table {
+		width: 100%;
+		text-align: center;
+		tr {
+			td {
+				font-size: 2em;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				input {
+					margin-top: 25px;
+					padding: 15px;
+					border: none;
+					background: #f0f0f0;
+				}
+			}
+		}
+	}
+	h1 {
+		text-align: center;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		margin-bottom: 150px;
+	}
+}
+.submit-btn {
+	padding-top: 150px;
+	input {
+		width: 50%;
+		background: black !important;
+		color: white;
+		display: block;
+		margin: 0 auto;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}

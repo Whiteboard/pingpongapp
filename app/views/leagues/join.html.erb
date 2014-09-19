@@ -1,0 +1,23 @@
+
+<h5>Enter League Credentials to Join</h5>
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
+<%= form_for :join, :url => {:action=>"join_league", :controller=>"leagues"}, :html => {:class => "join_form", :method => "POST"} do |f| %>
+
+  
+  <%= hidden_field_tag :user_id, current_user.id %>
+  <div class="field">
+	<%= f.label :league_name, 'League Name' %><br>
+    <%= f.text_field :league_name %>
+  </div>
+  <div class="field">
+    <%= f.label :league_password, 'Password' %><br>
+    <%= f.text_field :league_password %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Join League'%>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Profile', root_url %>

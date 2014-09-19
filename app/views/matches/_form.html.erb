@@ -1,0 +1,20 @@
+<%= form_for(@match, url: league_matches_path) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :player_one, value: current_user.id %>
+  <%= f.select "player_two", options_from_collection_for_select(@leagueusers, "id", "first_name") %>
+
+  <div class="actions">
+    <%= f.submit 'Play Game' %>
+  </div>
+<% end %>

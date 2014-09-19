@@ -1,0 +1,52 @@
+<%= render "layouts/header" %>
+
+<div class="content show-index">
+
+<% @playeronepoints = 0 %>
+<% @playertwopoints = 0 %>
+
+<div class="left">
+  <table class="match-table">
+    <thead>
+      <tr>
+        <th>Game #</th>
+        <th>Home</th>
+        <th>Score</th>
+        <th>Away</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% count = 0 %>
+      <% @games.each do |game| %>
+        <tr>
+          <td><%= link_to count += 1, edit_league_match_game_path(game.match.league_id, game.match_id, game.id) %></td>
+          <td><%= game.match.playerone.first_name %> <%= game.match.playerone.last_name %></td>
+          <td><%= game.player_one_score %></td>
+          <td><%= game.match.playertwo.first_name %> <%= game.match.playertwo.last_name %></td>
+          <td><%= game.player_two_score %></td>
+        </tr>
+        <% if game.player_one_score > game.player_two_score %>
+          <% @playeronepoints += 1%>
+        <% else %>
+          <% @playertwopoints += 1%>
+        <% end %>
+        <% %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if @playeronepoints > 1 || @playertwopoints > 1 %> <% else %>
+  <div class="play-match">
+    <%= link_to 'Play Match', new_league_match_game_path(@match.league_id, @match.id) %>
+  </div>
+<% end %>
+  
+
+
+<div class="league-admin">
+  <%= link_to 'Back', league_path(@match.league_id) %>
+</div>
+</div>

@@ -1,0 +1,90 @@
+<%= render "layouts/header" %>
+
+<div class="content">
+  <div class="league-admin">
+    <% if current_user.id == @league.admin_id %>
+      <%= link_to 'Edit League', edit_league_path(@league) %>
+    <% end %>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="league-name">
+          <%= @league.league_name %>
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <h4>Most Recent Games</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Home</th>
+                <th>Score</th>
+                <th>Away</th>
+                <th>Score</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @matches.order('created_at DESC').take(10).each do |match| %>
+                <tr>
+                  <td>
+                    <% if match.p1score > match.p2score %>
+                        <b><%= match.p1name %></b>
+                    <% else %>
+                        <%= match.p1name %>
+                    <% end %>
+                  </td>
+                  <td><%= match.p1score %></td>
+                  <td>
+                    <% if match.p1score < match.p2score %>
+                        <b><%= match.p2name %></b>
+                    <% else %>
+                        <%= match.p2name %>
+                    <% end %>          
+                  </td>
+                  <td><%= match.p2score %></td>
+                  <td><%= link_to 'Show', league_match_path(match.league_id, match.id) %></td>
+                  <td><%= link_to 'Edit', edit_league_match_path(match.league_id, match.id) %></td>
+                  <td><%= link_to 'Destroy', league_match_path(match.league_id, match.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class='col-sm-4'>
+          <h4>League Standings</h4>
+          <table>
+            <tr>
+              <th>Player</th>
+              <th>Wins</th>
+              <th>Losses</th>
+            </tr>
+           <% @leaguemembers.each do |user| %>
+            <tr>
+              <td>
+                <%= user.name %> 
+                <% totalwins = Match.where(match_winner: user.id).count %>
+                <% totallosses = Match.where.not(match_winner: user.id).where('player_one = ? OR player_two = ?', user.id, user.id).count %>
+              </td>
+              <td>
+                <%= totalwins %>
+              </td>
+              <td>
+                <%= totallosses %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 home-leagues">
+          <%= link_to 'New Match', new_league_match_path(@league.id), :class => 'new-league-btn' %>
+        </div>
+      </div>
+  </div>
+</div>

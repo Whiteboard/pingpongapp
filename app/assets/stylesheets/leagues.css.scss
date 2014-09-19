@@ -1,0 +1,47 @@
+// Place all the styles related to the Leagues controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.league-name {
+	text-align: center;
+}
+.league-admin {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	a {
+		color: white !important;
+		text-decoration: none;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+}
+.show-index {
+	font-size: 0.75em;
+	// .left, .right {
+	// 	width: 70%;
+	// 	display: inline-block;
+	// 	float: left;
+	// }
+	// .right {
+	// 	width: 30%;
+	// }
+}
+
+.league-stats {
+	position: absolute;
+	top: 150px;
+	right: 25%;
+	th {
+		text-align: left;
+	}
+	td {
+		padding: 5px;
+		text-align: center;
+		&:first-child {
+			text-align: left;
+			padding-left: 0px;
+		}
+	}
+}
